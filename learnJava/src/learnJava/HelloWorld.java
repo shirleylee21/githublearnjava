@@ -38,9 +38,9 @@ class Bc {
 		this.name = name;
 	}
 
-// toString ¬O¨Ó¦Ü©ó java.lang.Objectªº¤èªk
-// ¦pªG§Ú­Ì¹ï³o­Ó¤èªk¡A»İ­n§ïµ½ÁÙ¬O­«¼g®É
-// §Ú¥i¥HÂĞ¼g(§ï¼g)§Ú­Ì·Q­nªºµ²ªG
+	// toString æ˜¯ä¾†è‡³æ–¼ java.lang.Objectçš„æ–¹æ³•
+	// å¦‚æœæˆ‘å€‘å°é€™å€‹æ–¹æ³•ï¼Œéœ€è¦æ”¹å–„é‚„æ˜¯é‡å¯«æ™‚
+	// æˆ‘å¯ä»¥è¦†å¯«(æ”¹å¯«)æˆ‘å€‘æƒ³è¦çš„çµæœ
 	public String toString() {
 		return "this bc's name = " + name + ", weight = " + weight;
 	}
