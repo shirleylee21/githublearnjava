@@ -3,7 +3,7 @@ package learnJava;
 public class Class2 {
 
 	public static void main(String[] args) {
-		System.out.println("°ò¥»¸ê®Æ«¬ºA");
+		System.out.println("åŸºæœ¬è³‡æ–™å‹æ…‹");
 		BasicType basicType = new BasicType();
 		System.out.println("1+1=" + basicType.b1());
 		System.out.println("1-1=" + basicType.c1());
@@ -16,23 +16,23 @@ public class Class2 {
 		System.out.println(" int == double , 1 == 1.0 = " + basicType.h3());
 		System.out.println(" S1 = " + basicType.s1());
 
-		System.out.println("¤ñ¸ûÄİ©Ê»Pª«¥ó¬O§_¤@­P-1");
+		System.out.println("æ¯”è¼ƒå±¬æ€§èˆ‡ç‰©ä»¶æ˜¯å¦ä¸€è‡´-1");
 		Cat catOne = new Cat();
 		catOne.name = "Tom";
 		Cat catTwo = new Cat();
 		catTwo.name = "Tom";
-		// catOne.name = null; //catOne¤U­±ÁÙ¦³°µ³B²z ©w¸qnull·|¥X¿ù
-		System.out.println("catOne.name.equals(catTwo.name) => " + catOne.name.equals(catTwo.name)); // ª«¥óÀx¦sªº¤º®e ¬O§_¤@­P¡C
-		System.out.println("catOne.name == catTwo.name  	=> " + (catOne.name == catTwo.name)); // ª«¥óªº¸ê®Æ«¬ºA¡Aª«¥óªº°O¾ĞÊ^¦ì§}(id=?)¡C
-		System.out.println("catOne.equals(catTwo)       	=> " + catOne.equals(catTwo)); // ¤º®eªºª«¥ó¬O§_¤@­P¡C
-		System.out.println("catOne == catTwo            	=> " + (catOne == catTwo)); // ==«üª«¥óªº°O¾ĞÊ^¦ì§} ¬O§_¤@­P¡C
+		// catOne.name = null; //catOneä¸‹é¢é‚„æœ‰åšè™•ç† å®šç¾©nullæœƒå‡ºéŒ¯
+		System.out.println("catOne.name.equals(catTwo.name) => " + catOne.name.equals(catTwo.name)); // ç‰©ä»¶å„²å­˜çš„å…§å®¹ æ˜¯å¦ä¸€è‡´ã€‚
+		System.out.println("catOne.name == catTwo.name  	=> " + (catOne.name == catTwo.name)); // ç‰©ä»¶çš„è³‡æ–™å‹æ…‹ï¼Œç‰©ä»¶çš„è¨˜æ†¶ä½“ä½å€(id=?)ã€‚
+		System.out.println("catOne.equals(catTwo)       	=> " + catOne.equals(catTwo)); // å…§å®¹çš„ç‰©ä»¶æ˜¯å¦ä¸€è‡´ã€‚
+		System.out.println("catOne == catTwo            	=> " + (catOne == catTwo)); // ==æŒ‡ç‰©ä»¶çš„è¨˜æ†¶ä½“ä½å€ æ˜¯å¦ä¸€è‡´ã€‚
 
-		System.out.println("¤ñ¸ûÄİ©Ê»Pª«¥ó¬O§_¤@­P-2");
+		System.out.println("æ¯”è¼ƒå±¬æ€§èˆ‡ç‰©ä»¶æ˜¯å¦ä¸€è‡´-2");
 		Cat catThree = new Cat();
 		catThree.name = "Tom";
 		Cat catFour = new Cat();
 		catFour.name = "Tom";
-		catFour = catThree; // °O¾ĞÊ^¦ì§} «ü¦V¤@­P¡C
+		catFour = catThree; // è¨˜æ†¶ä½“ä½å€ æŒ‡å‘ä¸€è‡´ã€‚
 		catFour.name = "QQ";
 		System.out.println("catThree name = " + catThree.name);
 
@@ -42,18 +42,18 @@ public class Class2 {
 		int temp = b + b;
 		System.out.println(temp);
 	}
-	// °ò¥»¸ê®Æ«¬ºA primitive data type
+	// åŸºæœ¬è³‡æ–™å‹æ…‹ primitive data type
 
 }
 
 class BasicType {
-	// ¥¿¾ã¼Æ
+	// æ­£æ•´æ•¸
 	int iAmInt;
-	// ¯BÂI¼Æ
+	// æµ®é»æ•¸
 	float iAmFloat;
-	// Âù­¿ºë«×¯BÂI¼Æ
+	// é›™å€ç²¾åº¦æµ®é»æ•¸
 	double iAmDouble;
-	// ¥¬ªL­È
+	// å¸ƒæ—å€¼
 	boolean iAmBool;
 
 	/** 1 + 1 */
@@ -139,16 +139,16 @@ class BigCat {
 	public String name;
 }
 
-// °Ï°ì»P¥ş°ìÅÜ¼Æ
+// å€åŸŸèˆ‡å…¨åŸŸè®Šæ•¸
 class GlobalAndLocal {
-	int a = 5; // ¥ş°ì
+	int a = 5; // å…¨åŸŸ
 
 	public int a() {
 		return a;
 	}
 
 	public int b() {
-		int b = 10; // °Ï°ì
+		int b = 10; // å€åŸŸ
 		return b;
 	}
 }
