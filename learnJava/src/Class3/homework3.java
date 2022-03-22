@@ -39,12 +39,10 @@ public class homework3 {
 		q3_home5.initDeckCards();
 
 		System.out.println("洗牌");
-		q3_home5.shuffle();
+//		q3_home5.shuffle();
 //		q3_home5.jokerqueen();
 //		q3_home5.allshuffle();
-
-
-
+		q3_home5.initCards();
 
 	}
 }
@@ -163,17 +161,15 @@ class Q3_4 {
 	}
 }
 
-
 class Q3_5 {
 	/*** 3-5.有一組52張撲克牌(不含鬼牌)，請幫我進行發牌動作，並且發給四個人(不重覆)。 */
-	
-   
+
 	String[] colorArray;
 	String[] numberArray;
-	String[][] cards;
-	String[] Allcard;
-	
-	
+	String[][] Allcards;
+//	String[] Allcard;
+	String[] cards;
+
 //	public void jokerqueen() {
 //		//儲存每張撲克的花色、數字
 //		
@@ -201,8 +197,7 @@ class Q3_5 {
 //            Allcard[i] = tempcard;
 //        }
 //    }
-	
-	
+
 	// 花色
 	public void initColorArray() {
 		colorArray = new String[4];
@@ -230,51 +225,76 @@ class Q3_5 {
 		numberArray[12] = "K";
 	}
 
-
 	// 練習3 : 請練習發初始二維陣列，放入52張牌
 	public void initDeckCards() {
 		initColorArray();
 		initNumberArray();
-		cards = new String[4][13];
+		Allcards = new String[4][13];
 		for (int index = 0; index < colorArray.length; index++) {
 			for (int tag = 0; tag < numberArray.length; tag++) {
-				cards[index][tag] = colorArray[index] + numberArray[tag];
-				System.out.print(cards[index][tag] + "\t");
+				Allcards[index][tag] = colorArray[index] + numberArray[tag];
+				System.out.print(Allcards[index][tag] + "\t");
 			}
 			System.out.print("\n");
 		}
-		
+
 	}
 
+//	public void shuffle() {
+//
+//		for (int index = 0; index < colorArray.length; index++) {
+//
+//			ArrayList<Integer> cardsDeck = new ArrayList<>();
+//			for (int i = 0; i < numberArray.length; ++i) {
+//				cardsDeck.add(i);
+//			}
+//
+//			ArrayList<Integer> shuffledDeck = new ArrayList<>();
+//			while (cardsDeck.size() > 0) {
+//				int index1 = (int) (Math.random() * cardsDeck.size());
+//				int removedCard = cardsDeck.remove(index1);
+//				shuffledDeck.add(removedCard);
+//
+//			}
+////			System.out.println("Shuffled Cards" + shuffledDeck.toString());
+//			String s = shuffledDeck.toString().substring(1, shuffledDeck.toString().length() - 3);
+//			String[] strArr = s.split("\\s+");
+//
+//			for (int tag = 0; tag < strArr.length; tag++) {
+//				Allcards[index][tag] = colorArray[index]
+//						+ strArr[tag].toString().substring(0, strArr[tag].toString().length() - 1);
+//				System.out.print(Allcards[index][tag] + "\t");
+//			}
+//			System.out.print("\n");
+//		}
+//	}
 
-	public void shuffle() {
-
+	// 練習3 : 請練習發初始二維陣列，放入52張牌
+	public void initCards() {
+		this.initColorArray();
+		this.initNumberArray();
+		cards = new String[52];
+		int icnt= 0,value1 = 0,value2 = 0;
+		String s1;
+		Random random = new Random();       
+		s1 = " ";
 		for (int index = 0; index < colorArray.length; index++) {
-			
-			ArrayList<Integer> cardsDeck = new ArrayList<>();
-			for (int i = 0; i < numberArray.length; ++i) {
-				cardsDeck.add(i);
-			}
-
-			ArrayList<Integer> shuffledDeck = new ArrayList<>();
-			while (cardsDeck.size() > 0) {
-				int index1 = (int) (Math.random() * cardsDeck.size());
-				int removedCard = cardsDeck.remove(index1);
-				shuffledDeck.add(removedCard) ;
-
-			}
-//			System.out.println("Shuffled Cards" + shuffledDeck.toString());
-			String s = shuffledDeck.toString().substring(1,shuffledDeck.toString().length()-3);
-	        String[] strArr = s.split("\\s+");
-	        
-			for (int tag = 0; tag < strArr.length; tag++) {
-				cards[index][tag] = colorArray[index] + strArr[tag].toString().substring(0,strArr[tag].toString().length()-1);
-				System.out.print( cards[index][tag]+ "\t");
+			for (int tag = 0; tag < numberArray.length; tag++) {			
+				value1 = random.nextInt(colorArray.length);
+				value2 = random.nextInt(numberArray.length);			  
+				
+				while  (s1.contains(colorArray[value1] + numberArray[value2])) {
+					value1 = random.nextInt(colorArray.length);
+					value2 = random.nextInt(numberArray.length);				
+				}
+				cards[icnt] = colorArray[value1] + numberArray[value2];	
+				s1 = s1+ (colorArray[value1] + numberArray[value2]) +" ";
+				System.out.print(cards[icnt] + "\t");
+				icnt ++; 
 			}
 			System.out.print("\n");
 		}
-		
-		
+		 
 	}
 
 }
