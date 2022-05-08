@@ -31,8 +31,8 @@ package Class7;
  * </pre>
  */
 public class Class7 {
-  public static void main(String[] args) {
-	// 修飾子
+	public static void main(String[] args) {
+		// 修飾子
 //	Modifier modifier = new Modifier();
 //	modifier.iAmPublic = "iAmPublic";
 //	modifier.iAmProtected = "iAmProtected";
@@ -40,8 +40,8 @@ public class Class7 {
 //	System.out.println("iAmPublic = " + modifier.iAmPublic);
 //	System.out.println("iAmProtected = " + modifier.iAmProtected);
 //	System.out.println("iAmNotModifier = " + modifier.iAmNotModifier);
-    
-	// 繼承
+
+		// 繼承
 //	ONE_PIECE ONE_PIECE = new 魯夫();
 //	System.out.println("ONE_PIECE.大祕寶 = " + ONE_PIECE.大祕寶);
 //	魯夫 魯夫 = null;
@@ -52,8 +52,8 @@ public class Class7 {
 //	}
 //	System.out.println("魯夫.大祕寶 = " + 魯夫.大祕寶);
 //	魯夫.serach();
-    
-	// 繼承，抽象，多型，封裝
+
+		// 繼承，抽象，多型，封裝
 //	Food cake = new Cake();
 //	cake.setName("戚風蛋糕");
 //	cake.setRaw("麵粉，奶油，鮮奶，香草精，攪拌器，烤箱");
@@ -62,10 +62,28 @@ public class Class7 {
 //	tea.setName("紅茶");
 //	tea.setRaw("台茶十八號");
 //	tea.cooking();
-    
-	// Overloading 多載
+//	
+//	Food coffee = new Coffee();
+//	coffee.setName("咖啡");
+//	coffee.setRaw("熱水壺，馬克杯，咖啡粉，鮮奶，糖，湯匙");
+//	coffee.cooking();
+
 //	new Overloading().exec();
-  }
+//    role test =new knife("95%","20" );
+//    test.attack();
+//    test.special();
+//    test.getLevel();
+//    test.getLife();
+//    System.out.println(test.getLevel());
+//    System.out.println(test.getLife());
+
+		assassin test1 = new assassin("90%", "10");
+		System.out.println("等級:" + test1.getLevel());
+		test1.attack();
+		test1.special();
+		test1.backpack();
+
+	}
 }
 
 /**
@@ -76,21 +94,23 @@ public class Class7 {
  * </pre>
  */
 abstract class ONE_PIECE {
-  // 建構子優先順序
-  public ONE_PIECE(){
-	System.out.println("故事開始了!!");
-  }
-  public String 大祕寶 = "???";
+	// 建構子優先順序
+	public ONE_PIECE() {
+		System.out.println("故事開始了!!");
+	}
+
+	public String 大祕寶 = "???";
 }
 
-class 魯夫 extends ONE_PIECE{
-  //建構子優先順序
-  public 魯夫(){
-	System.out.println("肉!!!!!!!");
-  }
-  public void serach(){
-	System.out.println("尾田大大，還沒畫完...");
-  }
+class 魯夫 extends ONE_PIECE {
+	// 建構子優先順序
+	public 魯夫() {
+		System.out.println("肉!!!!!!!");
+	}
+
+	public void serach() {
+		System.out.println("尾田大大，還沒畫完...");
+	}
 }
 
 /**
@@ -102,10 +122,12 @@ class 魯夫 extends ONE_PIECE{
  * 自行發揮~
  * </pre>
  */
-interface FoodAction{
-  public void setRaw(String raw);
-  public String getRaw();
-  public void cooking();
+interface FoodAction {
+	public void setRaw(String raw);
+
+	public String getRaw();
+
+	public void cooking();
 }
 
 // 抽象類別 蛋糕，繼承了食物，實作了料理過程
@@ -113,69 +135,106 @@ interface FoodAction{
 // 食物是一個大型類別，可以用這個方式
 // 定義出大家相同的部分，剩下給想要繼承的類別
 // 自己做出想要的東西即可
-abstract class Food implements FoodAction{
-  protected String raw;
-  private String name;
-  // 封裝name(名字)目的是，不可以讓外界隨意更改名字
-  // 以免被說成產品標示不名
-  public String getName() {
-	return name;
-  }
-  public void setName(String name) {
-	this.name = name;
-  }
- 
+abstract class Food implements FoodAction {
+	protected String raw;
+	private String name;
+
+	// 封裝name(名字)目的是，不可以讓外界隨意更改名字
+	// 以免被說成產品標示不名
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public void setRaw(String raw) {
+		this.raw = raw;
+	}
+
+	@Override
+	public String getRaw() {
+		return raw;
+	}
 }
+
 class Cake extends Food {
 
-  @Override
+//  @Override
+//  public void setRaw(String raw) {
+//	this.raw = raw;
+//  }
+//
+//  @Override
+//  public String getRaw() {
+//	return raw;
+//  }
 
-  public void setRaw(String raw) {
-	this.raw = raw;
-  }
-
-  @Override
-  public String getRaw() {
-	return raw;
-  }
-
-  @Override
-  public void cooking() {
-	System.out.println("現在要做的料理是 : " + getName());
-	System.out.println("材料 : " + getRaw());
-	System.out.println("Step 1 : 蛋黃+糖打至糖溶");
-	System.out.println("Step 2 : 加入沙拉油 拌勻");
-	System.out.println("Step 3 : 加入液體&香草莢醬 ");
-	System.out.println("Step 4 : 粉類混合過篩加入");
-	System.out.println("etc...");
-  }
+	@Override
+	public void cooking() {
+		System.out.println("現在要做的料理是 : " + getName());
+		System.out.println("材料 : " + getRaw());
+		System.out.println("Step 1 : 蛋黃+糖打至糖溶");
+		System.out.println("Step 2 : 加入沙拉油 拌勻");
+		System.out.println("Step 3 : 加入液體&香草莢醬 ");
+		System.out.println("Step 4 : 粉類混合過篩加入");
+		System.out.println("etc...");
+	}
 
 }
 
 // 類別 茶，繼承了食物，實作了料理過程
 class Tea extends Food {
 
-  @Override
-  public void setRaw(String raw) {
-	this.raw = raw;
-  }
+//  @Override
+//  public void setRaw(String raw) {
+//	this.raw = raw;
+//  }
+//
+//  @Override
+//  public String getRaw() {
+//	return raw;
+//  }
 
-  @Override
-  public String getRaw() {
-	return raw;
-  }
+	@Override
+	public void cooking() {
+		System.out.println("現在要做的料理是 : " + getName());
+		System.out.println("材料 : " + getRaw());
+		System.out.println("Step 1 : 熱水");
+		System.out.println("Step 2 : 熱水燙過茶壺後，倒掉");
+		System.out.println("Step 3 : 放入茶葉");
+		System.out.println("Step 4 : 加入熱水，簡單過沖後倒掉");
+		System.out.println("Step 5 : 再次加入熱水，依照濃度等待1~3分鐘後，即可");
+	}
 
-  @Override
-  public void cooking() {
-	System.out.println("現在要做的料理是 : " + getName());
-	System.out.println("材料 : " + getRaw());
-	System.out.println("Step 1 : 熱水");
-	System.out.println("Step 2 : 熱水燙過茶壺後，倒掉");
-	System.out.println("Step 3 : 放入茶葉");
-	System.out.println("Step 4 : 加入熱水，簡單過沖後倒掉");
-	System.out.println("Step 5 : 再次加入熱水，依照濃度等待1~3分鐘後，即可");
-  }
- 
+}
+
+//類別 咖啡，繼承了食物，實作了料理過程
+class Coffee extends Food {
+
+//@Override
+//public void setRaw(String raw) {
+//	this.raw = raw;
+//}
+//
+//@Override
+//public String getRaw() {
+//	return raw;
+//}
+
+	@Override
+	public void cooking() {
+		System.out.println("現在要做的料理是 : " + getName());
+		System.out.println("材料 : " + getRaw());
+		System.out.println("Step 1 : 燒熱水");
+		System.out.println("Step 2 : 放入咖啡粉");
+		System.out.println("Step 3 : 加入熱水，攪拌");
+		System.out.println("Step 4 : 加入鮮奶，糖，即可飲用");
+//	System.out.println("Step 5 : ");
+	}
+
 }
 
 /**
@@ -188,21 +247,20 @@ class Tea extends Food {
  * System.out 物件
  * </pre>
  */
-class Overloading{
-  public void exec(){
-	sleep(1000);
-	sleep(2000.0f);
-  }
- 
-  private void sleep(int time){
-	System.out.println("睡多久 = " + time + "s");
-  }
- 
-  private void sleep(float time){
-	System.out.println("睡多久 = " + time  + "s");
-  }
-}
+class Overloading {
+	public void exec() {
+		sleep(1000);
+		sleep(2000.0f);
+	}
 
+	private void sleep(int time) {
+		System.out.println("睡多久 = " + time + "s");
+	}
+
+	private void sleep(float time) {
+		System.out.println("睡多久 = " + time + "s");
+	}
+}
 
 // 練習
 // 遊戲中有許多"角色"
@@ -213,5 +271,119 @@ class Overloading{
 // 設計出相關類別與介面
 // 並且請幫我用繼承，抽象，多型，封裝方式設計
 
+abstract class role implements Action { // 抽項類別
+	private String life;
+	private String level;
 
+	public String getLife() {
+		return life;
+	}
 
+	public void setLife(String life) {
+		this.life = life;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+}
+
+interface Action { // 有相同功能介面
+	public void attack();
+
+	public void special();
+
+}
+
+class soward extends role {
+
+	public soward(String life, String level) {
+		setLife(life);
+		setLevel(level);
+	}
+
+	@Override
+	public void attack() {
+
+		System.out.println("A++");
+	}
+
+	@Override
+	public void special() {
+		System.out.println("level--");
+
+	}
+
+}
+
+class magic extends role {
+
+	public magic(String life, String level) {
+		setLife(life);
+		setLevel(level);
+	}
+
+	@Override
+	public void attack() {
+
+		System.out.println("A+++");
+	}
+
+	@Override
+	public void special() {
+		System.out.println("level---");
+
+	}
+
+}
+
+class knife extends role {
+
+	public knife(String life, String level) {
+		setLife(life); // 初始化值
+		setLevel(level);
+	}
+
+	@Override
+	public void attack() {
+
+		System.out.println("A++++");
+	}
+
+	@Override
+	public void special() {
+		System.out.println("level----");
+
+	}
+
+}
+
+class assassin extends role {
+
+	public assassin(String life, String level) {
+		setLife(life);
+		setLevel(level);
+	}
+
+	@Override
+	public void attack() {
+
+		System.out.println("攻擊力:A+");
+	}
+
+	@Override
+	public void special() {
+		System.out.println("特殊技能:level----");
+
+	}
+
+	public void backpack() {
+		System.out.println("包包內容有：衣服、刀子、食物、寶石");
+	}
+
+}
