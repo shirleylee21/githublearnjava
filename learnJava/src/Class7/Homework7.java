@@ -66,13 +66,12 @@ public class Homework7 {
 class Q7_1 {
 
 	Map<Integer, OrderMenu> menuList = new LinkedHashMap<Integer, OrderMenu>();
-//	Map<Integer, OrderData> orderList = new LinkedHashMap<Integer, OrderData>() ;
 	ArrayList<Integer> orderList = new ArrayList<Integer>();
 	int orderRow = 0;
 
 	Scanner scanner = new Scanner(System.in);
 
-	public void initMenuData() {
+	public void InitMenuData() {
 
 		menuList.put(1, new OrderMenu("1", "排骨飯", 90));
 		menuList.put(2, new OrderMenu("2", "雞腿飯", 120));
@@ -82,24 +81,28 @@ class Q7_1 {
 	}
 
 	public void Run() {
-		initMenuData();
-		createorder();
+		InitMenuData();
+		OrderSystem();
 	}
 
-	public void createorder() {
+	public void OrderSystem() {
 		String choosetype;
 
 		while (true) {
-			System.out.print("請選擇功能：1.客戶點餐 / 2.訂單查詢，輸入0則結束點菜系統：");
+			System.out.print("請選擇功能：1.客戶點餐 / 2.訂單查詢 / 4.餐點統計，");
+			System.out.print("輸入0則結束點菜系統：");
 			choosetype = scanner.next();
 
 			switch (choosetype) {
 			case "1":
-				showMenu();
-				orderMenu();
+				ShowMenu();
+				CreateOrder();
 				break;
 			case "2":
-//			searchOrder();
+				OrderQuery();
+				break;
+			case "4":
+				OrderStatistics();
 				break;
 			case "0":
 				System.out.println("點餐系統結束，掰掰。");
@@ -112,7 +115,7 @@ class Q7_1 {
 		}
 	}
 
-	public void showMenu() {
+	public void ShowMenu() {
 		System.out.println("-----------------本店菜單-----------------");
 		System.out.println("序號\t\t菜名\t\t單價");
 
@@ -123,14 +126,15 @@ class Q7_1 {
 		System.out.println("---------------------------------------");
 	}
 
-	public void orderMenu() {
+	//1.客戶點餐
+	public void CreateOrder() {
 
 		while (true) {
 			System.out.println("請輸入序號進行點餐，輸入 0 則結束點餐，返回菜單頁面：");
 			int id = scanner.nextInt();
 			if (id == 0) {
 				// 點餐完畢，顯示使用者點完的結果
-            	showorderdata();
+            	ShowOrderData();
 				break;
 			}
 
@@ -147,7 +151,7 @@ class Q7_1 {
 	}
 
 	/**	 * 查看已點的菜	 */
-	public void showorderdata() {
+	public void ShowOrderData() {
 		
 		System.out.println("你點的餐點如下：");
 		System.out.println("序號\t\t菜名\t\t單價");
@@ -164,21 +168,77 @@ class Q7_1 {
 		
 	}
 
+	//2.訂單查詢
+	public void OrderQuery() {
+		
+		String choosetype;
 
+		while (true) {
+			System.out.print("請選擇功能：1.查詢全部交易 / 2.查詢編號，");
+			System.out.print("輸入0則結束訂單查詢系統，返回菜單頁面：");
+			choosetype = scanner.next();
 
+			switch (choosetype) {
+			case "1":
+				if (orderList.isEmpty()) {
+					System.out.println("當前您還未點餐，請重新輸入選擇");
+				} else {
+					ShowOrderData();
+					break;
+				}
+			case "2":
+				if (orderList.isEmpty()) {
+					System.out.println("當前您還未點餐，請重新輸入選擇");
+				} else {
+					System.out.print("請輸入要查詢的餐點編號：");
+					int id = scanner.nextInt();
+					if (!menuList.containsKey(id)) {
+						System.out.println("輸入錯誤的餐點編號，請重新輸入：");
+					} else {
+						
+						System.out.println("你查詢的餐點為：");
+						System.out.println("序號："+menuList.get(id).getId() +"，菜名："+ menuList.get(id).getName() 
+						+ "，單價：" + menuList.get(id).getPrice());
+						int ordercnt = 0;
+						for (int index = 0; index < orderList.size(); index++) {
+							if (orderList.get(index).equals(id)) {
+								ordercnt++;
+							}
+						}
+						System.out.println("共 " + ordercnt + " 份。");
+						System.out.println("---------------------------------------");
+						
+					}
+					
+					break;
+				}
+			case "0":
+				break;
+			default:
+				System.out.println("輸入錯誤的符號，請重新開始。\n");
+				break;
+			}
+			System.out.println();
+		}
+		
+	}
 
-//    public void showOrderedMenu(List<Dish> orderedList) {
-////        if (orderedList.isEmpty()) {
-////            System.out.println("當前您還未點餐，請重新輸入選擇");
-////        } else {
-////            System.out.println("當前您點的菜品如下");
-////            for (int i = 0; i < orderedList.size(); i++) {
-////                System.out.println(orderedList.get(i).getName());
-////            }
-////        }
-//
-//        
-//        
-//    }
+	
+	//4.餐點統計
+	public void OrderStatistics() {
+		
+        double money = 0.0d;
+        if (orderList.isEmpty()) {
+            System.out.println("當前您還未點餐，請重新輸入選擇");
+        } else {
+            System.out.println("請稍等，正在結算你的所有餐點中……");
+            for (int i = 0; i < orderList.size(); i++) {
+                money += menuList.get(i).getPrice();
+            }
+            System.out.format("你此次總共消費：NT- %.2f\n", money);
+        }
+        
+	} 
+
 
 }
