@@ -213,6 +213,7 @@ class Q7_1 {
 					break;
 				}
 			case "0":
+				OrderSystem();
 				break;
 			default:
 				System.out.println("輸入錯誤的符號，請重新開始。\n");
@@ -232,8 +233,9 @@ class Q7_1 {
             System.out.println("當前您還未點餐，請重新輸入選擇");
         } else {
             System.out.println("請稍等，正在結算你的所有餐點中……");
-            for (int i = 0; i < orderList.size(); i++) {
-                money += menuList.get(i).getPrice();
+			for (int index = 0; index < orderList.size(); index++) {
+				int order = orderList.get(index);
+				money += menuList.get(order).getPrice();
             }
             System.out.format("你此次總共消費：NT- %.2f\n", money);
         }
