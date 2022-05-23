@@ -3,6 +3,7 @@ package Class7;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -66,8 +67,11 @@ public class Homework7 {
 class Q7_1 {
 
 	Map<Integer, OrderMenu> menuList = new LinkedHashMap<Integer, OrderMenu>();
-	ArrayList<Integer> orderList = new ArrayList<Integer>();
-	int orderRow = 0;
+
+	Map<String, OrderData> orderDataMap = new LinkedHashMap<String, OrderData>();
+
+//	ArrayList<Integer> orderitem = new ArrayList<Integer>();
+	int orderRow = 1;
 
 	Scanner scanner = new Scanner(System.in);
 
@@ -89,7 +93,7 @@ class Q7_1 {
 		String choosetype;
 
 		while (true) {
-			System.out.print("請選擇功能：1.客戶點餐 / 2.訂單查詢 / 4.餐點統計，");
+			System.out.print("請選擇功能：1.客戶點餐 / 2.訂單查詢 / 3.商品維護 / 4.餐點統計 / 5.餐點修改，");
 			System.out.print("輸入0則結束點菜系統：");
 			choosetype = scanner.next();
 
@@ -101,8 +105,14 @@ class Q7_1 {
 			case "2":
 				OrderQuery();
 				break;
+			case "3":
+				ProdMaintain();
+				break;
 			case "4":
 				OrderStatistics();
+				break;
+			case "5":
+				OrderModify();
 				break;
 			case "0":
 				System.out.println("點餐系統結束，掰掰。");
@@ -126,121 +136,357 @@ class Q7_1 {
 		System.out.println("---------------------------------------");
 	}
 
-	//1.客戶點餐
+	// 1.客戶點餐
 	public void CreateOrder() {
+		String custNm = "", custMobile = "";
 
+		System.out.print("請輸入顧客姓名:");
+		custNm = scanner.next();
+		if (custNm.equals("0")) {
+			return;
+		}
+
+		System.out.print("請輸入顧客電話:");
+		custMobile = scanner.next();
+		if (custMobile.equals("0")) {
+			return;
+		}
+
+		List<Integer> orderitem = new ArrayList<>();
 		while (true) {
 			System.out.println("請輸入序號進行點餐，輸入 0 則結束點餐，返回菜單頁面：");
 			int id = scanner.nextInt();
 			if (id == 0) {
+				String orderNo = "ORD" + String.format("%03d", orderRow++);
+				OrderData orderData = new OrderData(orderNo, custNm, custMobile, orderitem);
+				orderDataMap.put(orderNo, orderData);
 				// 點餐完畢，顯示使用者點完的結果
-            	ShowOrderData();
+				ShowOrderData(orderNo);
 				break;
 			}
 
 			if (!menuList.containsKey(id)) {
 				System.out.println("輸入錯誤的符號，請重新輸入：");
 			} else {
-				System.out.println("輸入菜單序號：" + id);
+
+				System.out.println("請輸入菜單序號：" + id);
 				System.out.println("你點的餐點是：" + menuList.get(id).getName());
-				// 把已點的菜加入已點菜單
-				orderList.add(id);
+				// 把已點的菜加入訂單
+				orderitem.add(id);
+
 			}
 		}
+//		String orderNo = "ORD" + String.format("%03d", orderRow++);
+//		OrderData orderData = new OrderData(orderNo, custNm, custMobile, orderitem);
+//		orderDataMap.put(orderNo, orderData);
 
 	}
 
-	/**	 * 查看已點的菜	 */
-	public void ShowOrderData() {
-		
-		System.out.println("你點的餐點如下：");
+	/** * 查看已點的菜 */
+	public void ShowOrderData(String OrderNo) {
+
+////		System.out.println("你點的餐點如下：");
+////		System.out.println("序號\t\t菜名\t\t單價");
+//
+////		for (int index = 0; index < orderitem.size(); index++) {
+////			
+////			int order = orderitem.get(index);
+////			OrderMenu orderMenu = menuList.get(order);
+////			System.out.println(orderMenu.getId() + "\t\t" + orderMenu.getName() + "\t\t" 
+////					+ orderMenu.getPrice());
+////		}
+
+		System.out.println("訂單：" + orderDataMap.get(OrderNo).getOrderNo() + "，姓名："
+				+ orderDataMap.get(OrderNo).getCust_name() + "，電話：" + orderDataMap.get(OrderNo).getCust_mobile());
+		System.out.println("---------------------------------------");
 		System.out.println("序號\t\t菜名\t\t單價");
 
-		for (int index = 0; index < orderList.size(); index++) {
-			
-			int order = orderList.get(index);
-			OrderMenu orderMenu = menuList.get(order);
-			System.out.println(orderMenu.getId() + "\t\t" + orderMenu.getName() + "\t\t" 
-					+ orderMenu.getPrice());
+		for (Entry<String, OrderData> vo : orderDataMap.entrySet()) {
+			vo.getKey();
+			vo.getValue().getOrderitem();
+			if (vo.getKey() == orderDataMap.get(OrderNo).getOrderNo()) {
+				for (int index = 0; index < vo.getValue().getOrderitem().size(); index++) {
+					int order = vo.getValue().getOrderitem().get(index);
+					OrderMenu orderMenu = menuList.get(order);
+					System.out
+							.println(orderMenu.getId() + "\t\t" + orderMenu.getName() + "\t\t" + orderMenu.getPrice());
+				}
+			}
 		}
 
 		System.out.println("---------------------------------------");
-		
+
 	}
 
-	//2.訂單查詢
+	// 2.訂單查詢
 	public void OrderQuery() {
-		
+
 		String choosetype;
 
 		while (true) {
-			System.out.print("請選擇功能：1.查詢全部交易 / 2.查詢編號，");
+			System.out.print("請選擇功能：1.查詢全部交易 / 2.查詢訂單編號，");
 			System.out.print("輸入0則結束訂單查詢系統，返回菜單頁面：");
 			choosetype = scanner.next();
 
-			switch (choosetype) {
-			case "1":
-				if (orderList.isEmpty()) {
+			if ("1".equals(choosetype)) {
+
+				if (orderDataMap.isEmpty()) {
 					System.out.println("當前您還未點餐，請重新輸入選擇");
 				} else {
-					ShowOrderData();
-					break;
-				}
-			case "2":
-				if (orderList.isEmpty()) {
-					System.out.println("當前您還未點餐，請重新輸入選擇");
-				} else {
-					System.out.print("請輸入要查詢的餐點編號：");
-					int id = scanner.nextInt();
-					if (!menuList.containsKey(id)) {
-						System.out.println("輸入錯誤的餐點編號，請重新輸入：");
-					} else {
-						
-						System.out.println("你查詢的餐點為：");
-						System.out.println("序號："+menuList.get(id).getId() +"，菜名："+ menuList.get(id).getName() 
-						+ "，單價：" + menuList.get(id).getPrice());
-						int ordercnt = 0;
-						for (int index = 0; index < orderList.size(); index++) {
-							if (orderList.get(index).equals(id)) {
-								ordercnt++;
-							}
-						}
-						System.out.println("共 " + ordercnt + " 份。");
-						System.out.println("---------------------------------------");
-						
+					System.out.println("訂單餐點如下：");
+					for (String key : orderDataMap.keySet()) {
+						ShowOrderData(key);
 					}
-					
-					break;
 				}
-			case "0":
+			} else if ("2".equals(choosetype)) {
+				if (orderDataMap.isEmpty()) {
+					System.out.println("當前您還未點餐，請重新輸入選擇");
+				} else {
+					System.out.print("請輸入要查詢的餐點訂單編號：");
+					String id = scanner.next();
+					String orderid = Getid("ORDINFO", id);
+
+					if (orderid.contains("ORD")) {
+						System.out.println("你查詢的訂單為：");
+						ShowOrderData(orderid);
+
+					} else {
+						System.out.println(orderid);
+						OrderQuery();
+					}
+
+				}
+			} else if ("0".equals(choosetype)) {
 				OrderSystem();
 				break;
-			default:
+			} else {
 				System.out.println("輸入錯誤的符號，請重新開始。\n");
-				break;
 			}
 			System.out.println();
 		}
-		
+
 	}
 
-	
-	//4.餐點統計
+	// 查詢訂單ID
+	public String Getid(String type, String id) {
+//		String ls_return = " ";
+
+		switch (type) {
+		case "ORDINFO":
+			if (orderDataMap.containsKey(id)) {
+				return id;
+			} else {
+				return "輸入錯誤的訂單ID，請重新輸入：";
+			}
+		case "MAXID":
+			int i = 0;
+			for (Integer key : menuList.keySet()) {
+				if (Integer.valueOf(menuList.get(key).getId()) > i) {
+					i = Integer.valueOf(menuList.get(key).getId());
+				}
+			}
+			return String.valueOf(i);
+
+		default:
+			return "ID輸入錯誤。";
+		}
+	}
+
+	// 3.商品維護
+	public void ProdMaintain() {
+		String menu_name = "";
+		Integer menu_id, menu_price = 0;
+		String choosetype;
+
+		while (true) {
+			System.out.print("請選擇功能：1.新增菜單餐點 / 2.修改菜單餐點 / 3.移除菜單餐點 / 4.查詢菜單 ，");
+			System.out.print("輸入0則結束菜單維護系統：");
+			choosetype = scanner.next();
+
+			if (choosetype.equals("0")) {
+				break;
+			}
+
+			if ("1".equals(choosetype)) {
+
+				System.out.print("請輸入要新增的菜單餐點名稱:");
+				menu_name = scanner.next();
+				if (menu_name.equals("0")) {
+					break;
+				}
+				System.out.print("請輸入新增的菜單餐點價格:");
+				menu_price = Integer.parseInt(scanner.next());
+				if (menu_price.equals(0)) {
+					break;
+				}
+
+				int key_id = Integer.parseInt(Getid("MAXID", "")) + 1;
+				menuList.put(key_id, new OrderMenu(String.valueOf(key_id), menu_name, menu_price));
+				System.out.println("菜單 " + menu_name + " 新增完成。");
+
+			} else if ("2".equals(choosetype)) {
+				ShowMenu();
+				System.out.print("請輸入要修改的菜單序號:");
+				menu_id = Integer.parseInt(scanner.next());
+				if (menu_id.equals(0)) {
+					break;
+				}
+				System.out.print("請輸入修改的菜單餐點價格:");
+				menu_price = Integer.parseInt(scanner.next());
+				if (menu_price.equals(0)) {
+					break;
+				}
+
+				if (menuList.containsKey(menu_id)) {
+					menu_name = menuList.get(menu_id).getName();
+					menuList.put(menu_id, new OrderMenu(String.valueOf(menu_id), menu_name, menu_price));
+					System.out.println("菜單序號 " + menu_id + " 異動完成。");
+				}
+
+			} else if ("3".equals(choosetype)) {
+				ShowMenu();
+				System.out.print("請輸入要刪除的菜單序號:");
+				menu_id = Integer.parseInt(scanner.next());
+				if (menu_id.equals(0)) {
+					break;
+				}
+				if (menuList.containsKey(menu_id)) {
+					menuList.remove(menu_id);
+					System.out.println("菜單序號 " + menu_id + " 刪除完成。");
+				} else {
+					System.out.println("查無此菜單序號，請重新輸入");
+					ProdMaintain();
+				}
+
+			} else if ("4".equals(choosetype)) {
+				ShowMenu();
+			} else {
+				System.out.println("輸入錯誤的符號，請重新開始。\n");
+			}
+			System.out.println();
+
+		}
+	}
+
+	// 4.餐點統計
 	public void OrderStatistics() {
-		
-        double money = 0.0d;
-        if (orderList.isEmpty()) {
-            System.out.println("當前您還未點餐，請重新輸入選擇");
-        } else {
-            System.out.println("請稍等，正在結算你的所有餐點中……");
-			for (int index = 0; index < orderList.size(); index++) {
-				int order = orderList.get(index);
-				money += menuList.get(order).getPrice();
-            }
-            System.out.format("你此次總共消費：NT- %.2f\n", money);
-        }
-        
-	} 
+
+		String choosetype;
+
+		while (true) {
+			System.out.print("請選擇功能：1.查詢餐點銷售總金額 / 2.餐點銷售量，");
+			System.out.print("輸入0則結束訂單查詢系統，返回菜單頁面：");
+			choosetype = scanner.next();
+
+			if ("1".equals(choosetype)) {
+				double total_amt = 0.0d;
+
+				if (orderDataMap.isEmpty()) {
+					System.out.println("當前您還未點餐，請重新輸入選擇");
+				} else {
+
+					System.out.println("請稍等，正在結算你的所有餐點中……");
+					for (String key : orderDataMap.keySet()) {
+						for (int index = 0; index < orderDataMap.get(key).getOrderitem().size(); index++) {
+							int menu_id = orderDataMap.get(key).getOrderitem().get(index);
+							total_amt += menuList.get(menu_id).getPrice();
+						}
+					}
+					System.out.format("今日銷售總金額：NT- %.2f\n", total_amt);
+
+				}
+			} else if ("2".equals(choosetype)) {
+				int ll_cnt = 0;
+
+				if (orderDataMap.isEmpty()) {
+					System.out.println("當前您還未點餐，請重新輸入選擇");
+				} else {
+					System.out.print("請輸入你要查詢的餐點序號：");
+					String id = scanner.next();
+
+					for (String key : orderDataMap.keySet()) {
+						for (int index = 0; index < orderDataMap.get(key).getOrderitem().size(); index++) {
+							if (id.equals(String.valueOf(orderDataMap.get(key).getOrderitem().get(index)))) {
+								ll_cnt++;
+							}
+						}
+					}
+
+					System.out.println("餐點序號-'" + id + "', 今日餐點銷售量：" + String.valueOf(ll_cnt));
+				}
+
+			} else if ("0".equals(choosetype)) {
+				OrderSystem();
+				break;
+			} else {
+				System.out.println("輸入錯誤的符號，請重新開始。\n");
+			}
+			System.out.println();
+		}
+
+	}
+
+	// 5.餐點修改
+	public void OrderModify() {
+		String choosetype, orderid;
+		Integer menu_id, prod_id;
+
+		while (true) {
+			System.out.print("請選擇功能：1.新增訂單餐點 /2.刪除訂單餐點，");
+			System.out.print("輸入0則結束菜單維護系統：");
+			choosetype = scanner.next();
+
+			if (choosetype.equals("0")) {
+				break;
+			}
+
+			if ("1".equals(choosetype)) {
+
+				System.out.print("請輸入要修改的訂單編號:");
+				String id = scanner.next();
+				orderid = Getid("ORDINFO", id);
+
+				if (!orderid.contains("ORD")) {
+					System.out.println("查無此訂單資料!!");
+					break;
+				}
+				// 顯示菜單
+				ShowMenu();
+
+				System.out.print("請輸入要新增的菜單序號：");
+				menu_id = Integer.parseInt(scanner.next());
+				// 把已點的菜加入訂單
+				orderDataMap.get(orderid).getOrderitem().add(menu_id);
+				System.out.println(orderid + "訂單餐點 "+ menuList.get(menu_id).getName() +" 新增完成。");
+
+			}else if ("2".equals(choosetype)) {
+				
+				System.out.print("請輸入要修改的訂單編號:");
+				String id = scanner.next();
+				orderid = Getid("ORDINFO", id);
+
+				if (!orderid.contains("ORD")) {
+					System.out.println("查無此訂單資料!!");
+					break;
+				}
+				// 顯示訂單資料
+				ShowOrderData(orderid);
+
+				System.out.print("請輸入要刪除的訂單餐點序號：");
+				prod_id = Integer.parseInt(scanner.next());
+				// 訂單商品刪除
+				orderDataMap.get(orderid).getOrderitem().remove(prod_id);
+				System.out.println(orderid + "訂單餐點 "+ menuList.get(prod_id).getName() +" 刪除完成。");
+				
+			} else {
+				System.out.println("輸入錯誤的符號，請重新開始。\n");
+			}
+			System.out.println();
+
+		}
+
+	}
+
 
 
 }

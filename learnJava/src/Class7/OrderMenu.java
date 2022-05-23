@@ -4,7 +4,7 @@ public class OrderMenu {
 	private String id;
 	private String name;
 	private int price;
-
+	
 	public OrderMenu(String id, String name, int price) {
 		this.id = id;
 		this.name = name;
