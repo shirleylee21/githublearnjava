@@ -4,7 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
-
 /**
  * <pre>
  * 練習題1
@@ -41,7 +40,7 @@ class mi_1 {
 		System.out.println("-----X形星星-----");
 		for (int i = 1; i <= size; i++) { // 控制行
 			for (int j = 1; j < size; j++) { // 控制"*"號
-				if (i == j || j == 9 - i + 1) {
+				if (i == j || j == size - 1 - i + 1) {
 					System.out.print("*");
 				} else {
 					System.out.print(" ");
@@ -64,13 +63,12 @@ class mi_2 {
 	public void exec(int size) {
 		int row = 0;
 		int arraynum[] = { 0, 1, 2, 3, 4, 5 };
-		int r = (int) ((Math.random() * 9)+ 1);
-		for (int i = 0; i < arraynum.length; i++) {
+		int r = (int) ((Math.random() * 9) + 1);
+		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < arraynum.length; j++) {
 				if (r == (arraynum[i] + arraynum[j])) {
 					row++;
-					System.out.println("目標數: " + r + ", 第 " + row + " 組： " + arraynum[i] + ", " 
-							+ arraynum[j] );
+					System.out.println("目標數: " + r + ", 第 " + row + " 組： " + arraynum[i] + ", " + arraynum[j]);
 				}
 			}
 		}
@@ -198,7 +196,7 @@ class mi_3 {
 		i_math = scoreMap.get(1).getMath_score();
 		i_english = scoreMap.get(1).getEnglish_score();
 		i_chinese = scoreMap.get(1).getChinese_score();
-		
+
 		for (Integer key : scoreMap.keySet()) {
 			if (i_math > scoreMap.get(key).getMath_score()) {
 				i_math = scoreMap.get(key).getMath_score();
