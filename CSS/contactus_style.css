@@ -345,7 +345,11 @@
 .ez-btn.search-lg,.ez-btn.search-md,.ez-btn.search-sm{border-radius:10px}
 .ez-btn.search-lg{min-width:180px;min-height:60px;max-height:60px;padding:7px}
 
-.contactus_contactus__3XvD7{color:#222;padding:20px 15px 50px}
+/* body置中 */
+.contactus_contactus__3XvD7{
+    display:flex;align-items:center;justify-content:center;top:0;bottom:0;left:0;right:0;
+    color:#222;padding:20px 15px 50px;
+}
 
 .contactus_contactus__3XvD7{padding-top:75px;padding-bottom:130px}
 .contactus_contactus__3XvD7 
@@ -365,9 +369,8 @@
 
 .contactus_contactus__3XvD7 
 .contactus_title__mFMnG{position:relative;font-size:24px;font-weight:700;margin-bottom:20px;padding-left:10px;}
-@media only screen and (min-width:960px){
-    .contactus_contactus__3XvD7 
-.contactus_title__mFMnG{font-size:30px;}}
+
+.contactus_contactus__3XvD7 .contactus_title__mFMnG{font-size:30px;}
 .contactus_contactus__3XvD7 
 .contactus_title__mFMnG:before{
     content:"";
