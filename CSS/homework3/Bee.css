@@ -1,0 +1,654 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+/* 表頭Menu */
+.main-header{
+	background: #000;
+}
+.main-header .container{
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	max-width: 1200px;
+	margin: auto;
+}
+.main-header .logo{
+	width: 100px;
+}
+.main-header .logo img{
+	width: 100%;
+	vertical-align: middle;
+}
+.main-header .main-nav{
+	margin: auto;
+	display: flex;
+}
+.main-header .main-nav a{
+	font-family: 'Noto Sans TC', sans-serif;
+	text-decoration: none;
+	color: #fff;
+	padding: 5px 1em;
+	position: relative;
+	transform: translateY(0px);
+	transition: .3s;
+}
+.main-header .main-nav a:hover{
+	transform: translateY(-10px);
+}
+.main-header .main-nav a:after{
+	content: '';
+	position: absolute;
+	left: 50%;
+	right: 50%;
+	bottom: -5px;
+	height: 0;
+	border-bottom: 1px solid #fff;
+	transition: .3s;
+}
+.main-header .main-nav a:hover:after{
+	left: 1em;
+	right: 1em;
+}
+
+.main-header .header-search{
+	display: flex;
+}
+.main-header .header-search button,
+.main-header .header-search input{
+	border:none;
+	background-color: #fff;
+	padding: 5px 10px;
+}
+.main-header .header-search button:focus,
+.main-header .header-search input:focus{
+	outline: none;
+}
+.main-header .header-search button{
+	border-radius: 0 200px 200px 0;
+}
+.main-header .header-search input{
+	border-radius: 200px 0 0 200px;
+}
+
+
+
+/* 第一區塊-圖 */
+.wrap {
+    width: 100%;
+    display: flex;
+}
+
+.item {
+    width: 100%;
+    position: relative;
+}
+
+.item img {
+    width: 100%;
+    vertical-align: middle;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+}
+
+button.btn.white,
+a.btn.white {
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
+}
+
+button.btn.arrow,
+a.btn.arrow {
+    padding: 0px 46px 0px 20px;
+}
+
+button.btn,
+a.btn {
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+    line-height: 43px;
+    height: 40px;
+    text-transform: uppercase;
+    display: block;
+    opacity: 0.7;
+    text-align: center;
+    font-family: adiHausregular, Arial, Helvetica, Verdana, "Microsoft JhengHei", sans-serif;
+    box-sizing: border-box;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    background: rgb(12, 35, 64);
+    padding: 0px 20px;
+    border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    text-decoration: none;
+}
+
+a.btn.arrow>span {
+    position: relative;
+    line-height: 43px;
+    height: 40px;
+    display: inline-block;
+    padding: 0px;
+}
+
+
+/* @media screen and (min-width: 1024px) */
+.index-product-sp-list-wrap.W100 {
+    width: 100%;
+}
+
+/* @media screen and (min-width: 1024px) */
+.index-product-sp-list-wrap {
+    width: 960px;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0px auto;
+}
+
+div {
+    display: block;
+}
+
+.wrap-s::after,
+.wrap-m::after,
+.wrap-l::after,
+.index-product-sp-list-wrap::after,
+.index-product-sp-list-wrap .product-sp-list::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+
+
+
+
+/* 第二區塊-大圖六張 */
+
+#subProdPic {
+    margin-top: 46px;
+  }
+  
+  @media screen and (min-width: 1040px) {
+  
+    .subProdM {
+      display: none;
+    }
+  
+    .subProdN {
+      display: block;
+    }
+  
+    .subProd_UL li {
+      width: calc((100% - 24px) / 2);
+    }
+  }
+  
+  @media screen and (max-width: 1040px) {
+  
+    .subProd_UL {
+      flex-direction: column;
+    }
+  
+    .subProd_UL li {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+  
+    .subProdM {
+      display: block;
+    }
+  
+    .subProdN {
+      display: none;
+    }
+  
+    .subProd_UL li {
+      width: calc(100% - 30px);
+    }
+  
+    .buyBtnArea {
+      display: none;
+    }
+  
+  }
+  
+  .subProd_UL {
+    margin: 0;
+    padding: 0;
+    margin: 24px 24px 0 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 12.5px;
+  }
+  
+  .subProd_UL li {
+    margin-top: 0;
+    border: none;
+  }
+  
+  .subProd_UL a img {
+    padding: 4%;
+    width: 100%;
+    border: 0;
+    padding: 12.5px;
+  }
+  
+  
+  .buyBtnArea {
+    position: absolute;
+    width: 135px;
+    margin: auto;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+    height: auto;
+    line-height: 43px;
+    font-size: 19px;
+    opacity: 0.5;
+    margin-top: -78px;
+  }
+  
+  .buyBtnArea span {
+    margin-left: -10px;
+  }
+  
+  .buyBtnArea span::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 45px;
+    background: url(https://www.adidas.com.tw/rbkmall/images/adidas/icon.png) 0 0 no-repeat;
+    background-size: 4500%;
+    background-position: -78px -10px;
+  }
+
+
+
+
+
+
+
+
+
+
+/* 第三區塊-四雙鞋圖 */
+.wrap1 {
+    height: 100%;
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    align-items: center;
+}
+
+.container1 {
+    width: 100%;
+    margin: auto;
+    display: flex;
+
+    position: relative;
+    /* display: block;
+    width: 100%;
+    float: left; */
+}
+
+.item1 {
+    width: 23%;
+    margin: 0 15px;
+    /* display: flex; */
+    background-color: #fff;
+    border: 1px solid #888;
+    box-shadow: 0 10px 30px rgba(160, 0, 0, .5);
+    font-family: 'Noto Sans TC', sans-serif;
+
+    position: relative;
+}
+
+
+.item1 img {
+    width: 100%;
+    /* height: 100%;
+	object-fit: cover; */
+    vertical-align: middle;
+}
+
+.item1 .txt {
+    position: absolute;
+    top: 85%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+
+}
+
+.item1 span {
+    text-decoration: underline;
+    font-size: 100%;
+    text-underline-position: 1.5em;
+}
+
+
+.item1 a :hover {
+    border-color: blue;
+    /* display: flex;
+    justify-content:center;
+    top:80px; */
+}
+
+@media screen and (min-width: 600px) {
+    .item1 {
+        top: 0px;
+        /* left: 50%; */
+        right: auto;
+        /* margin-left: -260px; */
+    }
+}
+
+
+
+
+
+
+
+
+/* 第四區塊-推薦商品 */
+
+.subProdALLOthers {
+    padding: 0;
+    margin: 0 30px;
+  }
+  
+  .subProdOther_titleBar {
+    font-size: 32px;
+    line-height: 40px;
+    margin: 20px 0;
+    font-family: "adiNeuePro", Arial, Helvetica, Verdana, "Microsoft JhengHei", sans-serif;
+    text-align: center;
+  }
+  
+  @media screen and (min-width: 970px) {
+    .subProdOtherContent>div {
+      width: 960px;
+    }
+  
+    .subProdOtherContent ul {
+      justify-content: space-between;
+    }
+  
+    .subProdOtherContent>div {
+      margin: auto;
+    }
+  }
+  
+  @media screen and (max-width: 970px) {
+    .subProdOtherContent>div {
+      width: 90%;
+    }
+  
+    .subProdOtherContent ul {
+      left: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  
+    .subProdOtherContent ul li {
+      padding: 8px 1%;
+    }
+  
+    .noDis {
+      display: none;
+    }
+  
+  }
+  
+  @media screen and (min-width: 770px) {
+  
+    .noDis {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 770px) {
+  
+    .noDis {
+      display: block;
+    }
+  
+  }
+  
+  .subProdOtherContent ul {
+    display: flex;
+    position: relative;
+  }
+  
+  .subProdOtherContent img {
+    height: 200px;
+  }
+  
+  .norSpan {
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: normal;
+    font-style: inherit;
+    margin: 10px 0;
+  }
+  
+  .subProdOtherContent a>div,
+  .subProdOtherContent li>div {
+    height: 40px;
+  }
+  
+  .linethr {
+    font-size: 12px;
+    color: #bababa;
+    text-decoration: line-through;
+  }
+  
+  .spanChn {
+    color: #000;
+    font-size: 14px;
+    line-height: normal;
+    font-style: inherit;
+    margin: 10px 0;
+  }
+  
+  .spnDiv {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .overSalesdTitle {
+    font-size: 32px;
+    line-height: 40px;
+    margin: 20px 0;
+    font-family: "adiNeuePro", Arial, Helvetica, Verdana, "Microsoft JhengHei", sans-serif;
+    text-align: center;
+  }
+
+
+
+/* 點擊此處與我們聯絡 */
+
+.mailUs {
+    height: 90px;
+    color: #fff;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    position: relative;
+  }
+  
+  .mailUs_dis1 {
+    width: 960px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  @media screen and (min-width: 970px) {
+    .mailUs_dis2 {
+      display: inline;
+    }
+  }
+  
+  @media screen and (max-width: 970px) {
+    .mailUs_dis2 {
+      display: flex;
+      justify-content: center;
+    }
+  
+  }
+  
+  .mailUs_dis2 {
+    height: auto;
+  }
+  
+  
+  
+  .mailUs a {
+    font-size: 16px;
+    color: #fff;
+  }
+  
+  .mailUs a::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: url(https://www.reebok.com.tw/rbkmall/images/adidas/icon.png) 0 0 no-repeat;
+    background-size: 4500%;
+    background-position: -104px -92px;
+  }
+  
+  .mailUs a:hover {
+    text-decoration: underline;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+/* 頁尾footer */
+.main-footer {
+    padding: 50px 0 50px 0;
+    background: #fff;
+}
+
+.main-footer .container {
+    display: flex;
+    width: 1200px;
+    margin: auto;
+}
+
+.footer-item {
+    width: 0;
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.footer-item h4 {
+    font-size: 18px;
+    /* color: black; */
+    /* border-bottom: 1px dotted #fff; */
+    /* margin-bottom: .5em; */
+    /* padding-bottom: .5em; */
+
+    color: #000;
+    margin-bottom: 13px;
+    text-align: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    font-size: 18px;
+}
+
+.footer-item nav {
+    display: flex;
+    flex-direction: column;
+
+    font-size: 18px;
+    color: #000;
+    line-height: 20px;
+    font-weight: 300;
+}
+
+.footer-item nav a {
+    color: black;
+    line-height: 1.4;
+    text-decoration: none;
+    padding: 5px 0;
+}
+
+.footer-item nav a:hover {
+    color: #025F8E;
+}
+
+.footer-subs {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-subs form {
+    display: flex;
+    width: 100%;
+    margin: auto 0px;
+}
+
+.footer-subs input[type="text"],
+.footer-subs input[type="submit"] {
+    border: none;
+    padding: 5px 10px;
+}
+
+.footer-subs input[type="text"] {
+    width: 0;
+    flex-grow: 1;
+}
+
+.footer-subs input[type="submit"] {
+    color: #70f6df;
+    background-color: #3e5293;
+}
+
+.conpyright {
+    /* width: 100%;
+	text-align:right;
+	margin: 50px 0 0 ;
+	padding: 50px 0px;
+	background-color: black;b
+	color: #9a9b9b; */
+
+    width: 100%;
+    color: #9a9b9b;
+    text-align: center;
+    margin-top: 10px;
+    padding: 0 10px;
+    display: inline-block;
+    line-height: 17px;
+    box-sizing: border-box;
+    width: auto;
+    float: right;
+    margin-top: 0;
+}
